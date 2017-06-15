@@ -1,0 +1,50 @@
+Project plan:
+	-Create a song class that contains variables for:
+		+ artists of type string
+		+ titles of type string
+		+ lyrics dynamic array of type string (will be a vector)
+		+ a function to insert lyrics of that returns nothing
+
+	-Once class is made, a dynamic array of type song will be made
+	 (this will be made using the vector function)
+		+ This song dynamic array is what will be used to store
+		  all the songs in the database
+		+ The lyrics dynamic array in each song will be where
+		  all the strings for the lyrics will be stored
+
+	-A hashtable is how I plan on dealing with the word the user
+	 is searching for.
+		+ Though it will require a large amount of memory, the
+		  lyrics for songs will be hashed & sorted in the hashtable
+		  based on their hash function.
+		+ Collisions: Collisions will be dealt with using a second
+		  hash function to jump using the key (similar to lab 9)
+		+ Will need to check if all spots are full, if so, will
+		  have to expand the hashtable, and rehash all values
+		+ Each index will contain an array of structs
+		+ There will be 11 available spots for the array of structs
+		+ This will serve as a top 10 list. The 11th spot is to
+		  compare the word frequency of the rest of the list of
+		  songs to the current list. If a song has a higher frequency
+		  than the current minimum, the two songs will be swapped.
+		+ The struct contains a variable called frequency of type 
+		  integer for the number of times the word has appeared,
+		  and another integer for the index of the song in the
+		  vector of songs (to be able to search for the song in
+		  the array of type song).
+
+	-The actual search requires the program to:
+		+ Make sure the word is alpha only
+		+ Hashes the string and finds the index for word
+		+ Retrieves the top 10 list & loops to find the index
+		  for each instance of the word
+		+ While looping, goes the the index in the vector of songs
+		  for the first song in the top 10 list.
+		+ Linearly searches the song for the word & prints out each
+		  instance of the word, 5 words before & 5 words after.
+		+ Linear search will occur in the vector of lyrics each
+		  song has.
+		+ In order to print lyrics with correct punctuation a check
+		  will have to be made to make sure the alpha only version
+		  of the lyric matches the word searched. If the two match
+		  printing will proceed.
